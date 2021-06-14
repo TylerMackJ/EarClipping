@@ -149,4 +149,8 @@ function earClip() {
   fill(color(360 * Math.random(), 50, 90));
   triangle(points[0][0], points[0][1], points[1][0], points[1][1], points[2][0], points[2][1]);
   colorMode(RGB);
+  fill(0);
+  for (let i = 0; i < fullPoly.length; i++) {
+    circle(fullPoly[i][0], fullPoly[i][1], 5);
+  }
 }
