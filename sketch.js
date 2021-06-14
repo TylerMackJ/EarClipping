@@ -13,8 +13,6 @@ function setup() {
 
   createButton("Triangulate").position(0, 0).size(100, 25).mousePressed(triangulate);
   createButton("Reset").position(0, 25).size(100, 25).mousePressed(reset);
-
-  frameRate(20);
   noLoop();
 }
 
