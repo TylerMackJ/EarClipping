@@ -11,8 +11,8 @@ function setup() {
 
   background(backgroundColor);
 
-  createButton("Triangulate").position(0, 0).mousePressed(triangulate);
-  createButton("Reset").position(0, 25).mousePressed(reset);
+  createButton("Triangulate").position(0, 0).size(100, 25).mousePressed(triangulate);
+  createButton("Reset").position(0, 25).size(100, 25).mousePressed(reset);
 
   noLoop();
 }
@@ -26,7 +26,9 @@ function touchEnded() {
 }
 
 function addPoint() {
-  if (!triangulating) {
+  let x = mouseX;
+  let y = mouseY;
+  if (!triangulating && !(x <= 100 && y <= 50)) {
     // Check for no overlapping lines
     let x = mouseX;
     let y = mouseY;
