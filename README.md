@@ -1,1 +1,1 @@
-# [Ear Clipping Interactive Example](https://tylermackj.github.io/EarClippingTriangulation)
+# [Ear Clipping Interactive Example](https://tylermackj.github.io/EarClipping)
