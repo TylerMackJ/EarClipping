@@ -17,9 +17,15 @@ function setup() {
   noLoop();
 }
 
-function draw() {}
+function mouseReleased() {
+  addPoint();
+}
 
-function mouseClicked() {
+function touchEnded() {
+  addPoint();
+}
+
+function addPoint() {
   if (!triangulating) {
     // Check for no overlapping lines
     let x = mouseX;
