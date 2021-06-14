@@ -47,7 +47,7 @@ function intersect(p1, q1, p2, q2) {
 }
 
 function sign(p1, p2, p3) {
-  return (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1])
+  return (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1]);
 }
 
 function pointInTriangle(pt, v1, v2, v3) {
@@ -55,9 +55,8 @@ function pointInTriangle(pt, v1, v2, v3) {
   let d2 = sign(pt, v2, v3);
   let d3 = sign(pt, v3, v1);
 
-  let hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-  let hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+  let hasNeg = d1 < 0 || d2 < 0 || d3 < 0;
+  let hasPos = d1 > 0 || d2 > 0 || d3 > 0;
 
   return !(hasNeg && hasPos);
-
 }
