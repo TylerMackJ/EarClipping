@@ -116,8 +116,8 @@ function earClip() {
       // Test if the center of of the triangle is inside the polygon
       let center = [(points[p[0]][0] + points[p[1]][0] + points[p[2]][0]) / 3, (points[p[0]][1] + points[p[1]][1] + points[p[2]][1]) / 3]
       let count = 0;
-      for (let j = 0; j < fullPoly.length - 1; j++) {
-        if (intersect(center, [Number.MAX_VALUE, center[1]], fullPoly[j], fullPoly[j + 1])) {
+      for (let j = 0; j < fullPoly.length; j++) {
+        if (intersect(center, [Number.MAX_VALUE, center[1]], fullPoly[j], fullPoly[(j + 1) % fullPoly.length])) {
           count++;
         }
       }
