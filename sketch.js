@@ -11,7 +11,10 @@ function setup() {
 
   background(backgroundColor);
 
-  createButton("Triangulate").position(0, 0).size(100, 25).mousePressed(triangulate);
+  createButton("Triangulate")
+    .position(0, 0)
+    .size(100, 25)
+    .mousePressed(triangulate);
   createButton("Reset").position(0, 25).size(100, 25).mousePressed(reset);
   noLoop();
 }
@@ -114,10 +117,20 @@ function earClip() {
       let goodTriangle = true;
 
       // Test if the center of of the triangle is inside the polygon
-      let center = [(points[p[0]][0] + points[p[1]][0] + points[p[2]][0]) / 3, (points[p[0]][1] + points[p[1]][1] + points[p[2]][1]) / 3]
+      let center = [
+        (points[p[0]][0] + points[p[1]][0] + points[p[2]][0]) / 3,
+        (points[p[0]][1] + points[p[1]][1] + points[p[2]][1]) / 3,
+      ];
       let count = 0;
       for (let j = 0; j < fullPoly.length; j++) {
-        if (intersect(center, [Number.MAX_VALUE, center[1]], fullPoly[j], fullPoly[(j + 1) % fullPoly.length])) {
+        if (
+          intersect(
+            center,
+            [Number.MAX_VALUE, center[1]],
+            fullPoly[j],
+            fullPoly[(j + 1) % fullPoly.length]
+          )
+        ) {
           count++;
         }
       }
@@ -126,9 +139,29 @@ function earClip() {
       }
 
       // Test if there are any points inside the triangle
-      for (let j = 0; j < points.length; j++) {
-        if (p[0] != j && p[1] != j && p[2] != j) {
-          if (pointInTriangle(points[j], points[p[0]], points[p[1]], points[p[2]])) {
+      for (let j = 0; j < fullPoly.length; j++) {
+        if (
+          !(
+            points[p[0]][0] == fullPoly[j][0] &&
+            points[p[0]][1] == fullPoly[j][1]
+          ) &&
+          !(
+            points[p[1]][0] == fullPoly[j][0] &&
+            points[p[1]][1] == fullPoly[j][1]
+          ) &&
+          !(
+            points[p[2]][0] == fullPoly[j][0] &&
+            points[p[2]][1] == fullPoly[j][1]
+          )
+        ) {
+          if (
+            pointInTriangle(
+              fullPoly[j],
+              points[p[0]],
+              points[p[1]],
+              points[p[2]]
+            )
+          ) {
             goodTriangle = false;
             print("Point inside");
             break;
@@ -139,15 +172,29 @@ function earClip() {
       if (goodTriangle) {
         fill(color(360 * Math.random(), 50, 90));
 
-        triangle(points[p[0]][0], points[p[0]][1], points[p[1]][0], points[p[1]][1], points[p[2]][0], points[p[2]][1]);
+        triangle(
+          points[p[0]][0],
+          points[p[0]][1],
+          points[p[1]][0],
+          points[p[1]][1],
+          points[p[2]][0],
+          points[p[2]][1]
+        );
         points.splice(p[1], 1);
-        print((p[1]) + " removed");
+        print(p[1] + " removed");
         break;
       }
     }
   }
   fill(color(360 * Math.random(), 50, 90));
-  triangle(points[0][0], points[0][1], points[1][0], points[1][1], points[2][0], points[2][1]);
+  triangle(
+    points[0][0],
+    points[0][1],
+    points[1][0],
+    points[1][1],
+    points[2][0],
+    points[2][1]
+  );
   colorMode(RGB);
   fill(0);
   for (let i = 0; i < fullPoly.length; i++) {
